@@ -42,6 +42,9 @@ public class SignUp extends AppCompatActivity {
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("users");
 
+            if (!validateName() | !validatePassword() | !validateUsername() | !validateEmail() | !validatePhoneNo()) {
+                return;
+            }
             //Get all the values
             String name = regName.getEditText().getText().toString();
             String username = regUsername.getEditText().getText().toString();
@@ -149,18 +152,5 @@ public class SignUp extends AppCompatActivity {
 
 
 
-    //Save data in FireBase on button click
-    public void registerUser (View view) {
 
-        if (!validateName() | !validatePassword() | !validateUsername() | !validateEmail() | !validatePhoneNo());
-            return;
-
-            String name = regName.getEditText().getText().toString();
-        String username = regUsername.getEditText().getText().toString();
-        String email = regEmail.getEditText().getText().toString();
-        String password = regPassword.getEditText().getText().toString();
-        String phoneno = regPhoneNo.getEditText().getText().toString();
-        UserHelpClass helperClass = new UserHelpClass(name, username, email, phoneno, password);
-        reference.child(phoneno).setValue(helperClass);
-    }
 }
